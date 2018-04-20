@@ -2,8 +2,8 @@ from flask_login import UserMixin
 
 
 class Books:
-    books = {1: ["Harry Potter", "J.K.Rowling", 3],
-             2: ["The whistler", "John Grisham", 3]}
+    books = {1: [{"Title": "Harry Potter", "Author": "J.K.Rowling", "Copies": 3}],
+             2: [{"Title": "The whistler", "Author": "John Grisham", "Copies": 3}]}
 
     def get_all_books(self):
         return self.books
@@ -16,21 +16,28 @@ class Books:
         int(book_id)
         return self.books.get(book_id)
 
-    def add_book(self, book_id, book_title, author):
-        self.books[book_id] = [book_title, author]
+    def add_book(self, book_id, book_title, author, copies):
+        self.books[book_id] = [{"Title": book_title, "Author": author, "Copies": copies}]
         return self.books
 
     def delete_book(self, book_id):
         del self.books[book_id]
         return self.books
 
-    def update_book_info(self, book_id, book_title):
-        self.books[book_id][0] = book_title
-        return self.books
+    def modify_book_title(self, book_id, title):
+        title_book = self.books[book_id][0]
+        title_book["Title"] = title
+        return self.books.get(book_id)
 
-    def remove_copy(self, book_id):
-        rem_copy = self.books[book_id][2] - 1
-        return rem_copy
+    def modify_book_author(self, book_id, author):
+        author_book = self.books[book_id][0]
+        author_book["Author"] = author
+        return self.books.get(book_id)
+
+    def modify_book_copies(self, book_id, copies):
+        copies_book = self.books[book_id][0]
+        copies_book["Copies"] = copies
+        return self.books.get(book_id)
 
 
 class Users(UserMixin):
@@ -45,3 +52,4 @@ class Users(UserMixin):
 
     def change_password(self, username, password):
         self.users[username][1] = password
+

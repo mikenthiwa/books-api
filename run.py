@@ -69,7 +69,6 @@ def login():
             return jsonify({"msg": 'wrong password'}), 400
 
     access_token = create_access_token(identity=username)
-
     return jsonify(access_token=access_token), 200
 
 
@@ -92,69 +91,55 @@ def borrow(book_id):
     return jsonify(logged_in_as=current_user), 200
 
 
-@app.route('/api/v1/books/<int:book_id>', methods=['GET'])
+@app.route('/api/v1/books/<int:book_id>', methods=['GET', 'PUT', 'DELETE'])
 def specific_book(book_id):
-    return jsonify(book.get_a_book(book_id))
+    # get a specific book
+    if request.method == "GET":
+        return jsonify(book.get_a_book(book_id))
+    # modify book info
+    if request.method == 'PUT':
+        if not request.is_json:
+            return jsonify({"msg": "Missing json in request"}), 400
+        title = request.json.get("title")
+        author = request.json.get("author")
+        copies = request.json.get("copies")
 
+        if title:
+            book.modify_book_title(book_id, title)
+        if author:
+            book.modify_book_author(book_id, author)
+        if copies:
+            book.modify_book_copies(book_id, copies)
+        return jsonify(book.get_a_book(book_id)), 200
 
-@app.route('/api/v1/books/<int:book_id>', methods=['PUT'])
-def modify_book_info(book_id):
-    req_data = request.get_json()
-    book_info = ""
-
-    for values in req_data.values():
-        for value in values.values():
-            book_info = value
-
-    book.update_book_info(book_id, book_info)
-    return jsonify(book.get_all_books())
-
-
-@app.route('/api/v1/books/<book_id>', methods=['DELETE'])
-def remove_a_book(book_id):
-
-    try:
+    # Delete a book
+    if request.method == 'DELETE':
+        if not request.is_json:
+            return jsonify({"msg": "Missing json in request"}), 400
         book.delete_book(book_id)
-    except KeyError:
-        print(book_id.isalpha())
-    return jsonify(book.get_all_books())
+        return jsonify(book.get_all_books())
 
 
 @app.route('/api/v1/books', methods=['POST'])
 def add_new_book():
-
-    req_data = request.get_json()
-    book_id = ""
-    author = ""
-    title = ""
-
-    for key in req_data:
-        book_id = key
-        for key_val in req_data[key]:
-            title = key_val
-            author = req_data[key][key_val]
-
-    book.add_book(int(book_id), title, author)
-    return "You have added\nBook_Id: {}\nTitle: {}\nAuthor: {}".format(book_id, title, author)
+    if not request.is_json:
+        return jsonify({"msg": "Missing json in request"}), 400
+    book_id = request.json.get('book_id')
+    title = request.json.get('title')
+    author = request.json.get('author')
+    copies = request.json.get('copies')
+    book.add_book(int(book_id), title, author, copies)
+    return jsonify(book.get_all_books())
 
 
 @app.route('/api/auth/reset-password', methods=['POST'])
 def reset_password():
-    req_data = request.get_json()
-    user_data = user.all_users()
-    e_mail = ""
-    password = ""
-    username = ""
-    for email in req_data:
-        e_mail = email
-        password = req_data[e_mail]
-
-    for u_name in user_data:
-        username = u_name
-        if user_data[username][0] == e_mail:
-            user.change_password(username, password)
-
-    return 'Username : {}\nNew password : {}'.format(username, password)
+    if not request.is_json:
+        return jsonify({"msg": "Missing json in request"}), 400
+    username = request.json.get("username")
+    password = request.json.get("password")
+    user.change_password(username, password)
+    return jsonify({"username": username, "password": password})
 
 
 if __name__ == '__main__':
