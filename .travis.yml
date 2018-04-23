@@ -1,17 +1,19 @@
 language: python
 python: 3.6.1
-# install dependencies
-install:
-  -pip install -r requirements/dev.txt
 
 # install dependencies
 install:
-  - pip install codecov
+  - pip install -r requirements/dev.txt
+  - pip install coveralls
+  - pip install codeclimate-test-reporter
+
+
 
 # run scripts
 script:
-  - coverage erase
-  - coverage run test_book.py && coverage html
+  - nosetests tests.test_book.py --with-coverage
+
 
 after_success:
-  - codecov
+  - coveralls
+  - codeclimate-test-reporter

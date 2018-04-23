@@ -92,6 +92,11 @@ class TestFlaskApi(unittest.TestCase):
                                  content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
+    def test_book_id(self):
+
+        result = self.book.get_a_book(book_id)
+        self.assertEqual(result, [{'Title': 'Harry Potter', 'Author': 'J.K.Rowling', 'Copies': 3}])
+
 
 if __name__ == '__main__':
     unittest.main()

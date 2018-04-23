@@ -1,5 +1,3 @@
-from flask_login import UserMixin
-
 
 class Books:
     books = {1: [{"Title": "Harry Potter", "Author": "J.K.Rowling", "Copies": 3}],
@@ -40,7 +38,7 @@ class Books:
         return self.books.get(book_id)
 
 
-class Users(UserMixin):
+class Users:
     users = {"mike.nthiwa": ["mike.nthiwa@gmail.com", 123456789],
              "chris.mutua": ["c.mutua@gmail.com", 789456123]}
 
