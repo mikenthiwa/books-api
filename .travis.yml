@@ -11,7 +11,7 @@ install:
 
 # run scripts
 script:
-  - nosetests test_book.py --with-coverage
+  - nosetests test_book.py
 
 
 after_success:
