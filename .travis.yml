@@ -1,0 +1,17 @@
+language: python
+python: 3.6.1
+# install dependencies
+install:
+  -pip install -r requirements/dev.txt
+
+# install dependencies
+install:
+  - pip install codecov
+
+# run scripts
+script:
+  - coverage erase
+  - coverage run test_webapp.py && coverage html
+
+after_success:
+  - codecov
