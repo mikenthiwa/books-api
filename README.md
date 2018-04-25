@@ -1,9 +1,15 @@
+<a href="https://codeclimate.com/github/mikenthiwa/books-api/maintainability">
+<img src="https://api.codeclimate.com/v1/badges/c2bd6e8e53bce2eba746/maintainability" /></a>
+
+<a href="https://codeclimate.com/github/mikenthiwa/books-api/test_coverage">
+<img src="https://api.codeclimate.com/v1/badges/c2bd6e8e53bce2eba746/test_coverage" /></a>
 # books-api
 
 Hello-Books is a simple api that helps manage a library and its processes like stocking,
 tracking and renting books. With this application users are able to find and rent books.
 The application also has an admin section where the admin can do things like add books, delete books,
 increase the quantity of a book etc.
+
 
 
 ## Getting Started
