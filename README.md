@@ -1,9 +1,12 @@
+### books-api
+
 <a href="https://codeclimate.com/github/mikenthiwa/books-api/maintainability">
 <img src="https://api.codeclimate.com/v1/badges/c2bd6e8e53bce2eba746/maintainability" /></a>
 
 <a href="https://codeclimate.com/github/mikenthiwa/books-api/test_coverage">
 <img src="https://api.codeclimate.com/v1/badges/c2bd6e8e53bce2eba746/test_coverage" /></a>
-# books-api
+
+
 
 Hello-Books is a simple api that helps manage a library and its processes like stocking,
 tracking and renting books. With this application users are able to find and rent books.
@@ -21,12 +24,12 @@ Open the project using your ide.
 
 ### Prerequisite
 
-Python 3 and above.
-Virtual environment.
-Flask
-flask_jwt_ext
-Postman
-Browser e.g Chrome, firefox, safari
+* Python 3 and above.
+* Virtual environment.
+* Flask
+* flask_jwt_ext
+* Postman
+* Browser e.g Chrome, firefox, safari
 
 
 ### Installing
@@ -38,20 +41,20 @@ Download python 3 from https://www.python.org/downloads/
 
 
 Virtual environment:
-* on windows :
-    Open cmd.
-    Navigate to the project.
-    Create the virtual environment
+* On windows :
+    * Open cmd.
+    * Navigate to the project.
+    * Create the virtual environment
         * virtualenv env.
-    Activate the virtual environment:
+    * Activate the virtual environment:
         * cd: env\scripts\activate.
-    Install the following modules within the virtual environment
-    Flask module:
-        * pip install flask.
-    jwt
-        * pip install  flask_jwt_extended.
-    nose
-        * pip install nose
+    * Install the following modules within the virtual environment
+        * Flask module:
+            * pip install flask.
+        * jwt
+            * pip install  flask_jwt_extended.
+        * nose
+            * pip install nose
 
 
 ## Running the test
