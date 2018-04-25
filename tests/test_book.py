@@ -70,16 +70,12 @@ class TestFlaskApi(unittest.TestCase):
         response = self.app.put('/api/v1/books/1', data=json.dumps(book), content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
-    def test_modify_book_title_method(self):
-        response = self.book.modify_book_title(1, "harry")
-        self.assertEqual(response, [{"Author": "J.K.Rowling", "Copies": 3, "Title": "harry"}])
-
     def test_delete_book(self):
         response = self.app.delete('/api/v1/books/1')
         self.assertEqual(response.status_code, 400)
 
     def test_post_book(self):
-        book = {"book_id": 1, "title": "River Between", "author": "Chinua Achebe"}
+        book = {"book_id": 3, "title": "The Storm", "author": "Blake Banner", "copies": 3}
         response = self.app.post('/api/v1/books',
                                  data=json.dumps(book),
                                  content_type='application/json')

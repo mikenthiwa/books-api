@@ -1,4 +1,3 @@
-
 class Books:
     books = {1: [{"Title": "Harry Potter", "Author": "J.K.Rowling", "Copies": 3}],
              2: [{"Title": "The whistler", "Author": "John Grisham", "Copies": 3}]}
@@ -43,7 +42,8 @@ class Users:
              "chris.mutua": ["c.mutua@gmail.com", 789456123]}
 
     def create_user(self, username, email, password):
-        self.users[username] = [email, password]
+        new_user = self.users[username] = [email, password]
+        return new_user
 
     def all_users(self):
         return self.users
