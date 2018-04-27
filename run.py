@@ -57,18 +57,18 @@ def login():
     password = request.json.get('password', None)
 
     if not username and not password:
-        return jsonify({"msg": 'username and password are empty'}), 400
+        return jsonify({"msg": 'username and password are empty'}), 200
     elif not username:
-        return jsonify({"msg": 'username is empty'}), 400
+        return jsonify({"msg": 'username is empty'}), 200
     elif not password:
-        return jsonify({"msg": 'password is empty'}), 400
+        return jsonify({"msg": 'password is empty'}), 200
     else:
         if username not in users:
-            return jsonify({'msg': "Invalid user"}), 400
-        elif password != users[username][1]:
-            return jsonify({"msg": 'wrong password'}), 400
+            return jsonify({'msg': "Invalid user"}), 200
+        if password != users[username][1]:
+            return jsonify({"msg": 'wrong password'}), 200
 
-    access_token = create_access_token(identity=username)
+        access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token), 200
 
 
