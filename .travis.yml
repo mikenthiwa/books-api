@@ -13,9 +13,10 @@ install:
 
 # run scripts
 script:
+  - coverage run -m unittest discover -s tests/
   - nosetests tests
   - coverage report
-  - coverage run -m unittest discover -s tests/
+
 
 
 after_success:
