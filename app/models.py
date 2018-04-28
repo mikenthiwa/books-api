@@ -38,7 +38,7 @@ class Books:
 
 
 class Users:
-    users = {"mike.nthiwa": ["mike.nthiwa@gmail.com", 123456789],
+    users = {"mike.nthiwa": ["mike.nthiwa@gmail.com", "Michael$$#@!"],
              "chris.mutua": ["c.mutua@gmail.com", 789456123]}
 
     def create_user(self, username, email, password):
