@@ -144,5 +144,5 @@ def reset_password():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8000))
-    app.run("", debug=True, port=port)
+    port = int(os.environ.get('PORT', 5000))
+    app.run("", port=port)
