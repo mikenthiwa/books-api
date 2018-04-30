@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from app.models import Books, Users
 from flask_jwt_extended import (JWTManager, jwt_required, create_access_token, get_jwt_identity)
 import re
+import os
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'
@@ -143,4 +144,5 @@ def reset_password():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host="0.0.0.0", port=port)
